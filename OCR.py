@@ -2,7 +2,6 @@ import numpy as np
 import cv2
 import os
 from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
 from keras.preprocessing.image import ImageDataGenerator
 from keras.utils.np_utils import to_categorical
 from keras.models import Sequential
@@ -121,21 +120,6 @@ history = model.fit_generator(dataGen.flow(x_train,y_train,batch_size=batchsizev
                     epochs=epochsval,
                     validation_data=(x_validation,y_validation),
                     shuffle=1)
-plt.figure(1)
-plt.plot(history.history['loss'])
-plt.plot(history.history['val_loss'])
-plt.legend(['training','validation'])
-plt.title('Loss')
-plt.xlabel('epoch')
-
-plt.figure(2)
-plt.plot(history.history['accuracy'])
-plt.plot(history.history['val_accuracy'])
-plt.legend(['training','validation'])
-plt.title('Accuracy')
-plt.xlabel('epoch')
-
-plt.show()
 
 score=model.evaluate(x_test,y_test,verbose=0)
 print('Test score',score[0])
